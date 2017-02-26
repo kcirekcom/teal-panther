@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import process from 'process';
 import bodyParser from 'body-parser';
+import bcrypt from 'bcrypt';
 import User from './model/user';
 
 const router = express.Router();
@@ -21,7 +22,7 @@ mongoose.connect('mongodb://localhost/tealpanther_dev', null, (err) => {
 
 const app = express();
 
-// always use to parse requests in routes
+// always use to parse incoming requests
 app.use(jsonMiddleware);
 
 // POST /api/login
@@ -33,16 +34,40 @@ app.post('/api/login', (req, res) => {
 
 // POST /api/users
 // creates user in db
+// Example request:
+// {
+//   name: "Erick", // required,
+//   email: "erick@example.com", // required,
+//   password_digest: "password" // required
+// }
 app.post('/api/users', (req, res) => {
+  const body = req.body;
 
+  const salt = bcrypt.genSaltSync(10);
+  const hash = bcrypt.hashSync(body.password, salt);
+
+  const user = new User(req.body);
+  user.password_digest = hash;
+  user.save((err) => {
+    if (err) {
+      res.send({err: err});
+    } else {
+      res.send({user: user});
+    }
+  });
 
 });
 
 // POST /api/tasks
 // creates task for user
 app.post('/api/tasks', (req, res) => {
-
-
+  const task = new Task(req.body);
+  task.save((err) => {
+    if (err) {
+      res.send({err: err});
+    } else {
+      res.send({task: task});
+    }
 });
 
 
