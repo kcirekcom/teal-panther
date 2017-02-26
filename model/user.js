@@ -7,7 +7,7 @@ const schema = new mongoose.Schema({
 });
 
 // ensures email is unique before attempting to save
-schema.pre('save', true, function (next) {
+schema.pre('save', function (next) {
   mongoose.models['User'].findOne({email: this.email}, 'email', (err, results) => {
     if (err) {
       next(err);
@@ -18,7 +18,6 @@ schema.pre('save', true, function (next) {
       next();
     }
   });
-  next();
 });
 
 export default mongoose.model('User', schema);
