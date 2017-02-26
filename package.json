@@ -1,0 +1,25 @@
+{
+  "name": "teal-panther",
+  "version": "1.0.0",
+  "description": "MVP app using React",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kcirekcom/teal-panther.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kcirekcom/teal-panther/issues"
+  },
+  "homepage": "https://github.com/kcirekcom/teal-panther#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "express": "^4.14.1",
+    "mongodb": "^2.2.24"
+  }
+}
