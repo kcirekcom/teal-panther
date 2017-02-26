@@ -1,10 +1,18 @@
-import * as express from 'express';
-import * as mongoose from 'mongoose';
+import express from 'express';
+import mongoose from 'mongoose';
 import process from 'process';
+import bodyParser from 'body-parser';
+import User from './model/user';
+
+const router = express.Router();
+
+// jsonMiddleware populates the request
+// body after parsing it
+const jsonMiddleware = bodyParser.json();
 
 // connect to the db
 // will buffer operations
-mongoose.connect('mongodb//localhost/tealpanther_dev', null, (err) => {
+mongoose.connect('mongodb://localhost/tealpanther_dev', null, (err) => {
   if (err) {
     console.log(err);
     process.exit(1);
@@ -12,6 +20,9 @@ mongoose.connect('mongodb//localhost/tealpanther_dev', null, (err) => {
 });
 
 const app = express();
+
+// always use to parse requests in routes
+app.use(jsonMiddleware);
 
 // POST /api/login
 // Authenticates a user and returns a JWT token and current user's info

@@ -4,7 +4,9 @@
   "description": "MVP app using React",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon bundle.server.js",
+    "build": "webpack",
+    "build-watch": "webpack-dev-server --inline --hot"
   },
   "repository": {
     "type": "git",
@@ -18,7 +20,11 @@
   },
   "homepage": "https://github.com/kcirekcom/teal-panther#readme",
   "dependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-es2015": "^6.22.0",
     "bcrypt": "^1.0.2",
+    "body-parser": "^1.16.1",
     "express": "^4.14.1",
     "mongoose": "^4.8.4",
     "webpack": "^2.2.1"
@@ -26,6 +32,7 @@
   "devDependencies": {
     "eslint": "^3.16.1",
     "eslint-plugin-react": "^6.10.0",
+    "nodemon": "^1.11.0",
     "webpack-dev-server": "^2.4.1"
   }
 }
