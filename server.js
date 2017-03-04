@@ -105,7 +105,7 @@ app.post('/api/tasks', (req, res) => {
 
 
 // GET /api/tasks
-// gets task for user
+// retrieves task for user
 app.get('/api/tasks', (req, res) => {
   const user_id = 0;
   Task.find({user_id: user_id}, (err, tasks) => {
@@ -129,7 +129,7 @@ app.put('/api/tasks/:id', (req, res) => {
   });
 });
 
-// TEST route
+// TEST route works
 app.post('/api/test', (req, res) => {
   res.send(req.body);
 });
